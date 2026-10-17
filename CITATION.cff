@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this project, cite this repository and the version or commit you used. Also acknowledge pymobiledevice3; see THIRD_PARTY_NOTICES.md."
+type: software
+title: "iPhone Virtual Location (iPhone虚拟位置)"
+authors:
+  - name: "ShiningAu"
+    website: "https://github.com/ShiningAu"
+version: 0.1.0
+date-released: 2026-10-17
+repository-code: "https://github.com/ShiningAu/iphone-virtual-location"
+url: "https://github.com/ShiningAu/iphone-virtual-location"
+license: GPL-3.0-only
+keywords:
+  - iPhone
+  - Windows
+  - USB
+  - location simulation
+  - pymobiledevice3
+  - Codex
+  - Claude Code

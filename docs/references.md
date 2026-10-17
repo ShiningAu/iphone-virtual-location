@@ -26,3 +26,23 @@
 ## 编写过程与原创范围
 
 项目通过用户与 Codex 的协作整理，包含 AI 辅助编写的封装与文档。提供 CLAUDE.md 是为了让 Claude Code 用户方便复现，不代表 Claude 参与过当天设备测试，也不代表任何厂商为本项目背书。仓库没有包含聊天全文、账号数据或私有认证材料。
+
+具体来源边界：
+
+- 通过 PyPI 安装 pymobiledevice3 11.33.1，设备通信和定位协议由该依赖提供；本项目没有从头实现这些协议。
+- 本次会话编写了临时设备检测和启动脚本，曾修改本地依赖中的等待逻辑。发布的 `src/iphone_location.py` 改为进程内替换命令回调，保留异步等待，不要求修改依赖源码文件。
+- 发布仓库中的入口、Windows 脚本、预设、测试与文档由本次任务编写；调用上游 API 的结构以实际读取的上游源码和 CLI 为依据，不应把整个通信栈称作本项目原创。
+- DiPlay 的相关性是另一条 MFi / iAP2 技术路线的调研背景。本项目没有下载其 APK、提取 `certificate.p7b` 或 `identity.pk8`，也未复制其源码。
+- 标准 GPL-3.0 许可证正文来自安装包附带的许可证文件；它不是本项目编写的协议文本。
+
+## Attribution summary in English
+
+The device protocol implementation comes from pymobiledevice3 11.33.1, installed from PyPI and developed in doronz88/pymobiledevice3. This project supplies the launcher, Windows scripts, public presets, tests, and documentation. Upstream source and CLI behavior informed the asynchronous wrapper. An early local experiment edited the dependency's wait logic; the published wrapper instead registers a process-local callback.
+
+DiPlay, PlayPort, GeoPort, SimLocation, LocWarp and the linked health-feature reports were evaluated as alternatives or background. Their code, APKs, authentication keys and configuration files are not bundled or used by this project's runtime. Referencing these projects does not imply that their maintainers endorse this repository.
+
+## 引用与许可证不是同一件事
+
+项目通过来源链接主动说明实际依赖和调研范围。再使用第三方代码时，应另外遵守其许可证，例如保留适用的版权/许可声明，以及满足相应的源码提供和修改声明要求。只加一个 GitHub 链接不能取代这些要求。本项目选择 GPL-3.0 并附完整正文；依赖保留各自许可。
+
+参考：[GitHub 许可说明](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)、[GPL-3.0 正文](https://www.gnu.org/licenses/gpl-3.0.html)。

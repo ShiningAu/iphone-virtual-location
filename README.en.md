@@ -2,7 +2,7 @@
 
 A small **Windows USB iPhone location simulator** built on [pymobiledevice3](https://github.com/doronz88/pymobiledevice3). Includes a documented device case, reproducible setup, location presets, restore guidance, and instructions for **Codex and Claude Code**.
 
-[中文说明](README.md) · [Architecture](docs/architecture.md) · [Sources and attribution](docs/references.md) · [AI-assisted reproduction](docs/reproduce-with-ai.md)
+[中文说明](README.md) · [Detailed usage guide](docs/usage.en.md) · [Architecture](docs/architecture.md) · [Sources and attribution](docs/references.md) · [AI-assisted reproduction](docs/reproduce-with-ai.md)
 
 ## What was verified
 
@@ -14,12 +14,23 @@ The tested method did **not** unlock region-restricted Apple Watch or AirPods he
 
 Requirements: Windows, Python 3.12 recommended, Apple Devices or iTunes USB support, a data-capable USB cable, an unlocked and trusted iPhone with Developer Mode enabled. The case used an already working developer-services environment; fresh driver/image setup was not separately validated.
 
+**Before sending coordinates**, enable Developer Mode in Settings → Privacy & Security → Developer Mode. Follow the restart prompt, unlock the phone, confirm enabling Developer Mode, and reconnect USB if needed. If the option is missing, consult the prerequisites and troubleshooting guidance before starting.
+
 ```powershell
 .\scripts\setup.ps1
 .\scripts\start.ps1
 ```
 
-The default preset is New York, Manhattan (`40.7128, -74.0060`). Keep the terminal and USB connection open. Verify the blue dot in Apple Maps. If necessary, turn Location Services off on the phone, wait ten seconds, then turn it back on and check again.
+The default preset is New York, Manhattan (`40.7128, -74.0060`).
+
+### Phone steps after sending coordinates
+
+1. Keep USB connected and the computer session running. Do not press Enter yet.
+2. Open Apple Maps, tap the location arrow, and verify the target city's blue dot.
+3. If it has not updated, open Settings → Privacy & Security → Location Services, turn it off for **ten seconds**, turn it back on, and check Maps again.
+4. If needed, optionally turn off Wi-Fi, Cellular Data and Location Services briefly, wait about ten seconds, turn Location Services back on and restore the previous network settings, then check Maps. See the [detailed English guide](docs/usage.en.md) for the complete sequence.
+
+**Developer Mode is a prerequisite; disabling networking is optional troubleshooting.** The case did not establish that a network toggle was required or could unlock regional features. Do not leave Location Services disabled. Sending coordinates is not uploading phone files.
 
 ```powershell
 # Another public demonstration location
@@ -42,3 +53,7 @@ Press **Enter** in the active session to request a clear. If needed, run `.\scri
 See `AGENTS.md`, `CLAUDE.md`, and `CONTRIBUTING.md` before changing the project. Never commit `.state/`, `.venv/`, pairing records, private keys, real device identifiers, or personal logs. Public preset coordinates are examples, not the user's actual location.
 
 No MFi keys, CarKit/iAP2 implementation, Bluetooth pairing, or AnyGo cloud authentication are used. GPL-3.0; third-party dependencies retain their own licenses. Codex and Claude Code are independent tools, and this project does not imply their endorsement.
+
+## Citation and reuse
+
+Cite the repository URL and the version or commit you actually used. [CITATION.cff](CITATION.cff) provides machine-readable metadata. Preserve the applicable licenses and upstream copyright notices when reusing or distributing code; attribution links alone do not replace license requirements. The core device implementation is pymobiledevice3. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the [source inventory](docs/references.md) for the boundary between the actual dependency, this project's wrapper, and evaluated alternatives.

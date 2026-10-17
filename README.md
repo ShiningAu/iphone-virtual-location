@@ -4,7 +4,7 @@
 
 仓库名：`iphone-virtual-location`。基于开源 [pymobiledevice3](https://github.com/doronz88/pymobiledevice3)，无需 iAnyGo 订阅、蓝牙配对或 AnyGo 云端认证。它是开发者模拟定位工具，**不承诺解锁健康功能或其他地区限制**。
 
-[English](README.en.md) · [Codex / Claude 复现指南](docs/reproduce-with-ai.md) · [项目来源](docs/references.md) · [贡献指南](CONTRIBUTING.md)
+[English](README.en.md) · [详细使用指南](docs/usage.md) · [Codex / Claude 复现指南](docs/reproduce-with-ai.md) · [项目来源](docs/references.md) · [贡献指南](CONTRIBUTING.md)
 
 适用检索词：iPhone 虚拟定位、Windows USB 定位、iOS location simulation、pymobiledevice3、DVT、Codex、Claude Code。这里的 AI 说明用于协助部署和复现本项目，不包含模型训练或模型复现。
 
@@ -24,7 +24,7 @@
 1. Windows 电脑，推荐 Python 3.12，确保命令行可以使用 `py`。
 2. 安装 Apple Devices 或 iTunes，提供 iPhone USB 驱动与设备通信服务。
 3. 使用能传输数据的 USB 线，解锁手机，并在手机上确认“信任此电脑”。
-4. 在 iPhone“设置 → 隐私与安全性 → 开发者模式”手动开启开发者模式，并按提示重启和确认。
+4. **在发送坐标之前**，先到 iPhone“设置 → 隐私与安全性 → 开发者模式”手动开启开发者模式，并按提示重启、解锁和确认启用。重启后重新确认 USB 连接。
 5. 初次使用建议只连接一台 iPhone。
 
 当天使用了电脑上已经存在的 USB 通信环境，未单独验证“全新 Windows 安装 Apple Devices 后”的完整初始化流程。开发者镜像或配对状态缺失时，先看 [故障排查](docs/troubleshooting.md)。
@@ -50,7 +50,14 @@
 .\scripts\setup.ps1 -Python 'C:\path\to\python.exe'
 ```
 
-保持 USB 连接和启动窗口运行。看到坐标发送成功后，在 iPhone 打开 Apple 地图并点定位箭头核实。若蓝点没有更新，可以在手机设置中关闭定位服务，等待 10 秒后重开，再检查地图。当天测试中不需要先切换网络；切换网络也不代表能够解除地区限制。
+### 发送后，手机上如何操作
+
+1. 保持 USB 连接和电脑启动窗口运行，暂时不要按 Enter。
+2. 在 iPhone 打开 Apple 地图，点定位箭头，确认目标城市的蓝点。
+3. 若蓝点未更新，到“设置 → 隐私与安全性 → 定位服务”关闭定位服务，**等待 10 秒后重新开启**，再回到地图检查。
+4. 如果仍未更新，可选地在手机设置中短暂关闭 Wi-Fi、蜂窝数据与定位服务，等待约 10 秒后重新开启定位服务，并将网络恢复到原状态，再检查地图。具体顺序见 [详细使用指南](docs/usage.md)。
+
+**开发者模式是使用前提；关闭网络仅是可选排查。**本次案例没有证实断网是必要条件，也没有证实网络开关能解除地区限制。定位服务不能一直关闭。本项目的“发送位置”是向手机发送坐标，不是上传手机文件。
 
 ## 自定义位置与设备选择
 
@@ -109,3 +116,7 @@ iphone-virtual-location/
 依赖固定到当天版本。升级后需重新核实 CLI 接口、隧道连接、模拟位置与恢复行为。支持范围以实测为准。
 
 技术说明见 [架构](docs/architecture.md)。本项目采用 GPL-3.0；依赖的许可与来源见 [第三方说明](THIRD_PARTY_NOTICES.md)。
+
+## 引用与再使用
+
+请引用仓库地址及实际使用的版本或提交，并保留适用许可证和上游版权信息。仓库提供 [CITATION.cff](CITATION.cff) 供引用工具读取。核心定位实现来自 pymobiledevice3；本项目的封装、文档与调研来源范围见 [来源清单](docs/references.md)。文档中的链接致谢不能代替代码许可证的要求。
