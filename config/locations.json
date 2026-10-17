@@ -1,0 +1,12 @@
+{
+  "new-york": {
+    "label": "New York, Manhattan",
+    "latitude": 40.7128,
+    "longitude": -74.006
+  },
+  "hong-kong": {
+    "label": "Hong Kong, Central",
+    "latitude": 22.2819,
+    "longitude": 114.1589
+  }
+}

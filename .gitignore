@@ -1,0 +1,17 @@
+.venv/
+.state/
+__pycache__/
+*.py[cod]
+*.log
+.env
+.env.*
+!.env.example
+*.p7b
+*.pk8
+*.pem
+*.key
+*.p12
+*.mobileprovision
+*.zip
+.DS_Store
+Thumbs.db

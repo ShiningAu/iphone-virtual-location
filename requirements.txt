@@ -1,0 +1,2 @@
+# The version used in the 2026-10-17 successful device session.
+pymobiledevice3==11.33.1
